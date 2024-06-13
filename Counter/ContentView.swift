@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var titles: [String]
 
     let colors: [Color] = [
-        .red, .green, .blue, .orange, .purple, .pink, .yellow, .gray, .cyan, .brown
+        .red, .purple, .blue, .orange, .green, .pink, .yellow, .gray, .cyan, .brown
     ]
 
     init(numberOfCounters: Int) {
