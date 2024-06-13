@@ -11,6 +11,7 @@
 		933CBCB72C1B3A6B007B5F12 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CBCB62C1B3A6B007B5F12 /* ContentView.swift */; };
 		933CBCB92C1B3A6C007B5F12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933CBCB82C1B3A6C007B5F12 /* Assets.xcassets */; };
 		933CBCBC2C1B3A6C007B5F12 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933CBCBB2C1B3A6C007B5F12 /* Preview Assets.xcassets */; };
+		933CBCC42C1B56B0007B5F12 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CBCC32C1B56B0007B5F12 /* SelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		933CBCB82C1B3A6C007B5F12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		933CBCBB2C1B3A6C007B5F12 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		933CBCBD2C1B3A6C007B5F12 /* Counter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Counter.entitlements; sourceTree = "<group>"; };
+		933CBCC32C1B56B0007B5F12 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				933CBCB42C1B3A6B007B5F12 /* CounterApp.swift */,
 				933CBCB62C1B3A6B007B5F12 /* ContentView.swift */,
+				933CBCC32C1B56B0007B5F12 /* SelectionView.swift */,
 				933CBCB82C1B3A6C007B5F12 /* Assets.xcassets */,
 				933CBCBD2C1B3A6C007B5F12 /* Counter.entitlements */,
 				933CBCBA2C1B3A6C007B5F12 /* Preview Content */,
@@ -141,6 +144,7 @@
 			files = (
 				933CBCB72C1B3A6B007B5F12 /* ContentView.swift in Sources */,
 				933CBCB52C1B3A6B007B5F12 /* CounterApp.swift in Sources */,
+				933CBCC42C1B56B0007B5F12 /* SelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

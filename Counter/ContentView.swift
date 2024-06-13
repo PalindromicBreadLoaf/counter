@@ -8,14 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var counter: Int = 0
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Counter: \(counter)")
+                .font(.largeTitle)
+                .padding()
+
+            HStack {
+                Button(action: {
+                    counter += 1
+                }) {
+                    Text("Increase")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+
+                Button(action: {
+                    counter -= 1
+                }) {
+                    Text("Decrease")
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
