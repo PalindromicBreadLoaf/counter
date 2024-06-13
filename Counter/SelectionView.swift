@@ -19,8 +19,8 @@ struct SelectionView: View {
                 Text("Select Number of Counters")
                     .font(.largeTitle)
                     .padding()
-                    .lineLimit(nil) // Allow unlimited lines
-                    .multilineTextAlignment(.center) // Center the text
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.center)
 
                 Stepper(value: $numberOfCounters, in: 1...10) {
                     Text("\(numberOfCounters) \(numberOfCounters == 1 ? "Counter" : "Counters")")

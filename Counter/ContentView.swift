@@ -12,10 +12,13 @@ struct ContentView: View {
     @State private var counters: [Int]
     @State private var titles: [String]
 
+    let colors: [Color] = [
+        .red, .green, .blue, .orange, .purple, .pink, .yellow, .gray, .cyan, .brown
+    ]
+
     init(numberOfCounters: Int) {
         self.numberOfCounters = numberOfCounters
         
-        // Load counters and titles, ensure they have the correct length
         let loadedCounters = UserDefaults.standard.array(forKey: "counters") as? [Int] ?? []
         let loadedTitles = UserDefaults.standard.stringArray(forKey: "titles") ?? []
 
@@ -26,7 +29,7 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                let columns = [GridItem(.adaptive(minimum: 200))] // Adjust minimum width
+                let columns = [GridItem(.adaptive(minimum: 200))]
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(0..<numberOfCounters, id: \.self) { index in
                         VStack {
@@ -35,7 +38,7 @@ struct ContentView: View {
                                 .padding()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                            Text("\(titles[index]): \(counters[index])")
+                            Text("\(counters[index])")
                                 .font(.title2)
                                 .padding()
 
@@ -47,7 +50,7 @@ struct ContentView: View {
                                     Text("-")
                                         .padding()
                                         .frame(minWidth: 50)
-                                        .background(Color.red)
+                                        .background(colors[index % colors.count])
                                         .foregroundColor(.white)
                                         .cornerRadius(10)
                                 }
@@ -61,7 +64,7 @@ struct ContentView: View {
                                     Text("+")
                                         .padding()
                                         .frame(minWidth: 50)
-                                        .background(Color.blue)
+                                        .background(colors[index % colors.count])
                                         .foregroundColor(.white)
                                         .cornerRadius(10)
                                 }
@@ -81,8 +84,8 @@ struct ContentView: View {
                             .padding(.bottom)
                         }
                         .padding()
-                        .frame(minWidth: 200) // Ensure minimum width
-                        .background(Color(.systemGray))
+                        .frame(minWidth: 200)
+                        .background(Color(.darkGray))
                         .cornerRadius(10)
                         .shadow(radius: 5)
                     }
