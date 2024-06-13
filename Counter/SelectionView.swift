@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct SelectionView: View {
     @State private var numberOfCounters: Int = 1
     @State private var navigateToCounters: Bool = false
@@ -17,8 +19,10 @@ struct SelectionView: View {
                 Text("Select Number of Counters")
                     .font(.largeTitle)
                     .padding()
+                    .lineLimit(nil) // Allow unlimited lines
+                    .multilineTextAlignment(.center) // Center the text
 
-                Stepper(value: $numberOfCounters, in: 1...10) {
+                Stepper(value: $numberOfCounters, in: 1...8) {
                     Text("\(numberOfCounters) \(numberOfCounters == 1 ? "Counter" : "Counters")")
                         .font(.title)
                 }
@@ -38,7 +42,8 @@ struct SelectionView: View {
                     ContentView(numberOfCounters: numberOfCounters)
                 }
             }
-            .frame(width: 300, height: 200)
+            .frame(minWidth: 300, minHeight: 200)
+            .padding()
         }
     }
 }
