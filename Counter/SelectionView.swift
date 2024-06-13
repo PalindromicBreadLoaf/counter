@@ -18,7 +18,7 @@ struct SelectionView: View {
                     .font(.largeTitle)
                     .padding()
 
-                Stepper(value: $numberOfCounters, in: 1...8) {
+                Stepper(value: $numberOfCounters, in: 1...10) {
                     Text("\(numberOfCounters) \(numberOfCounters == 1 ? "Counter" : "Counters")")
                         .font(.title)
                 }
@@ -41,4 +41,8 @@ struct SelectionView: View {
             .frame(width: 300, height: 200)
         }
     }
+}
+
+#Preview {
+    SelectionView()
 }
