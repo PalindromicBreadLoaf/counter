@@ -21,62 +21,70 @@ struct ContentView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(0..<numberOfCounters, id: \.self) { index in
-                    VStack {
-                        TextField("Title", text: $titles[index], onCommit: saveData)
-                            .font(.title)
-                            .padding()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+        GeometryReader { geometry in
+            ScrollView {
+                let columns = [GridItem(.adaptive(minimum: 200))] // Adjust minimum width
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(0..<numberOfCounters, id: \.self) { index in
+                        VStack {
+                            TextField("Title", text: $titles[index], onCommit: saveData)
+                                .font(.title)
+                                .padding()
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                        Text("\(titles[index]): \(counters[index])")
-                            .font(.title2)
+                            Text("\(titles[index]): \(counters[index])")
+                                .font(.title2)
+                                .padding()
+
+                            HStack {
+                                Button(action: {
+                                    counters[index] -= 1
+                                    saveData()
+                                }) {
+                                    Text("-")
+                                        .padding()
+                                        .frame(minWidth: 50)
+                                        .background(Color.red)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                }
+
+                                Spacer()
+
+                                Button(action: {
+                                    counters[index] += 1
+                                    saveData()
+                                }) {
+                                    Text("+")
+                                        .padding()
+                                        .frame(minWidth: 50)
+                                        .background(Color.blue)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                }
+                            }
                             .padding()
 
-                        HStack {
                             Button(action: {
-                                counters[index] -= 1
+                                counters[index] = 0
                                 saveData()
                             }) {
-                                Text("-")
+                                Text("Reset")
                                     .padding()
-                                    .frame(minWidth: 50)
-                                    .background(Color.red)
+                                    .background(Color.gray)
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                             }
-
-                            Spacer()
-
-                            Button(action: {
-                                counters[index] += 1
-                                saveData()
-                            }) {
-                                Text("+")
-                                    .padding()
-                                    .frame(minWidth: 50)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
+                            .padding(.bottom)
                         }
                         .padding()
-
-                        Button(action: {
-                            counters[index] = 0
-                            saveData()
-                        }) {
-                            Text("Reset")
-                                .padding()
-                                .background(Color.gray)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        .padding(.bottom)
+                        .frame(minWidth: 200) // Ensure minimum width
+                        .background(Color(.systemGray))
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
                     }
-                    .padding()
                 }
+                .padding()
             }
         }
     }
