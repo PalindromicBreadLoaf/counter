@@ -14,8 +14,10 @@ struct ContentView: View {
 
     init(numberOfCounters: Int) {
         self.numberOfCounters = numberOfCounters
-        self._counters = State(initialValue: Array(repeating: 0, count: numberOfCounters))
-        self._titles = State(initialValue: Array(repeating: "Counter", count: numberOfCounters))
+        let loadedCounters = UserDefaults.standard.array(forKey: "counters") as? [Int] ?? Array(repeating: 0, count: numberOfCounters)
+        let loadedTitles = UserDefaults.standard.stringArray(forKey: "titles") ?? Array(repeating: "Counter", count: numberOfCounters)
+        self._counters = State(initialValue: loadedCounters)
+        self._titles = State(initialValue: loadedTitles)
     }
 
     var body: some View {
@@ -23,7 +25,7 @@ struct ContentView: View {
             VStack {
                 ForEach(0..<numberOfCounters, id: \.self) { index in
                     VStack {
-                        TextField("Title", text: $titles[index])
+                        TextField("Title", text: $titles[index], onCommit: saveData)
                             .font(.title)
                             .padding()
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -35,6 +37,7 @@ struct ContentView: View {
                         HStack {
                             Button(action: {
                                 counters[index] -= 1
+                                saveData()
                             }) {
                                 Text("-")
                                     .padding()
@@ -48,6 +51,7 @@ struct ContentView: View {
 
                             Button(action: {
                                 counters[index] += 1
+                                saveData()
                             }) {
                                 Text("+")
                                     .padding()
@@ -61,6 +65,7 @@ struct ContentView: View {
 
                         Button(action: {
                             counters[index] = 0
+                            saveData()
                         }) {
                             Text("Reset")
                                 .padding()
@@ -74,5 +79,10 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    func saveData() {
+        UserDefaults.standard.set(counters, forKey: "counters")
+        UserDefaults.standard.set(titles, forKey: "titles")
     }
 }
