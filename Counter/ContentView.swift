@@ -14,10 +14,13 @@ struct ContentView: View {
 
     init(numberOfCounters: Int) {
         self.numberOfCounters = numberOfCounters
-        let loadedCounters = UserDefaults.standard.array(forKey: "counters") as? [Int] ?? Array(repeating: 0, count: numberOfCounters)
-        let loadedTitles = UserDefaults.standard.stringArray(forKey: "titles") ?? Array(repeating: "Counter", count: numberOfCounters)
-        self._counters = State(initialValue: loadedCounters)
-        self._titles = State(initialValue: loadedTitles)
+        
+        // Load counters and titles, ensure they have the correct length
+        let loadedCounters = UserDefaults.standard.array(forKey: "counters") as? [Int] ?? []
+        let loadedTitles = UserDefaults.standard.stringArray(forKey: "titles") ?? []
+
+        self._counters = State(initialValue: Self.resizeArray(array: loadedCounters, toSize: numberOfCounters, defaultValue: 0))
+        self._titles = State(initialValue: Self.resizeArray(array: loadedTitles, toSize: numberOfCounters, defaultValue: "Counter"))
     }
 
     var body: some View {
@@ -92,5 +95,15 @@ struct ContentView: View {
     func saveData() {
         UserDefaults.standard.set(counters, forKey: "counters")
         UserDefaults.standard.set(titles, forKey: "titles")
+    }
+    
+    static func resizeArray<T>(array: [T], toSize size: Int, defaultValue: T) -> [T] {
+        if array.count > size {
+            return Array(array.prefix(size))
+        } else if array.count < size {
+            return array + Array(repeating: defaultValue, count: size - array.count)
+        } else {
+            return array
+        }
     }
 }
