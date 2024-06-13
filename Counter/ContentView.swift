@@ -34,21 +34,25 @@ struct ContentView: View {
 
                         HStack {
                             Button(action: {
-                                counters[index] += 1
+                                counters[index] -= 1
                             }) {
-                                Text("Increase")
+                                Text("-")
                                     .padding()
-                                    .background(Color.blue)
+                                    .frame(minWidth: 50)
+                                    .background(Color.red)
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                             }
 
+                            Spacer()
+
                             Button(action: {
-                                counters[index] -= 1
+                                counters[index] += 1
                             }) {
-                                Text("Decrease")
+                                Text("+")
                                     .padding()
-                                    .background(Color.red)
+                                    .frame(minWidth: 50)
+                                    .background(Color.blue)
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                             }
