@@ -10,10 +10,12 @@ import SwiftUI
 struct ContentView: View {
     var numberOfCounters: Int
     @State private var counters: [Int]
+    @State private var titles: [String]
 
     init(numberOfCounters: Int) {
         self.numberOfCounters = numberOfCounters
         self._counters = State(initialValue: Array(repeating: 0, count: numberOfCounters))
+        self._titles = State(initialValue: Array(repeating: "Counter", count: numberOfCounters))
     }
 
     var body: some View {
@@ -21,8 +23,13 @@ struct ContentView: View {
             VStack {
                 ForEach(0..<numberOfCounters, id: \.self) { index in
                     VStack {
-                        Text("Counter \(index + 1): \(counters[index])")
+                        TextField("Title", text: $titles[index])
                             .font(.title)
+                            .padding()
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                        Text("\(titles[index]): \(counters[index])")
+                            .font(.title2)
                             .padding()
 
                         HStack {
@@ -65,6 +72,7 @@ struct ContentView: View {
         }
     }
 }
+
 
 
 
