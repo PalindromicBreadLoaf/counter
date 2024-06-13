@@ -22,7 +22,7 @@ struct SelectionView: View {
                     .lineLimit(nil) // Allow unlimited lines
                     .multilineTextAlignment(.center) // Center the text
 
-                Stepper(value: $numberOfCounters, in: 1...8) {
+                Stepper(value: $numberOfCounters, in: 1...10) {
                     Text("\(numberOfCounters) \(numberOfCounters == 1 ? "Counter" : "Counters")")
                         .font(.title)
                 }
