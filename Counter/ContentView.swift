@@ -8,40 +8,54 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var counter: Int = 0
+    var numberOfCounters: Int
+    @State private var counters: [Int]
+
+    init(numberOfCounters: Int) {
+        self.numberOfCounters = numberOfCounters
+        self._counters = State(initialValue: Array(repeating: 0, count: numberOfCounters))
+    }
 
     var body: some View {
-        VStack {
-            Text("Counter: \(counter)")
-                .font(.largeTitle)
-                .padding()
+        ScrollView {
+            VStack {
+                ForEach(0..<numberOfCounters, id: \.self) { index in
+                    VStack {
+                        Text("Counter \(index + 1): \(counters[index])")
+                            .font(.title)
+                            .padding()
 
-            HStack {
-                Button(action: {
-                    counter += 1
-                }) {
-                    Text("Increase")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
+                        HStack {
+                            Button(action: {
+                                counters[index] += 1
+                            }) {
+                                Text("Increase")
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
 
-                Button(action: {
-                    counter -= 1
-                }) {
-                    Text("Decrease")
+                            Button(action: {
+                                counters[index] -= 1
+                            }) {
+                                Text("Decrease")
+                                    .padding()
+                                    .background(Color.red)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                        }
                         .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    }
                 }
             }
-            .padding()
         }
     }
 }
 
-#Preview {
+
+
+/*#Preview {
     ContentView()
-}
+}*/
