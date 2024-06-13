@@ -45,24 +45,27 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                             }
-
-                            Button(action: {
-                                counters[index] = 0
-                            }) {
-                                Text("Reset")
-                                    .padding()
-                                    .background(Color.gray)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
                         }
                         .padding()
+
+                        Button(action: {
+                            counters[index] = 0
+                        }) {
+                            Text("Reset")
+                                .padding()
+                                .background(Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding(.bottom)
                     }
+                    .padding()
                 }
             }
         }
     }
 }
+
 
 
 
